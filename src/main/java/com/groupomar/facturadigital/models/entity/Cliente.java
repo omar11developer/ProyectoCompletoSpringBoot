@@ -29,7 +29,7 @@ public class Cliente implements Serializable {
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date creatAt;
+    private Date createAt;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Factura> facturas;
@@ -72,11 +72,11 @@ public class Cliente implements Serializable {
     }
 
     public Date getCreatAt() {
-        return creatAt;
+        return createAt;
     }
 
     public void setCreatAt(Date creatAt) {
-        this.creatAt = creatAt;
+        this.createAt = creatAt;
     }
 
     public List<Factura> getFacturas() {
