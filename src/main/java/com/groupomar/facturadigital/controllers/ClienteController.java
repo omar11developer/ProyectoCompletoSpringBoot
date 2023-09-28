@@ -34,6 +34,8 @@ public class ClienteController {
     @Autowired
     private IUploadFileService uploadFileService;
 
+
+
     @GetMapping(value = "/uploads/{filename:.+}")
     public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
         Resource recurso = null;
@@ -161,4 +163,6 @@ public class ClienteController {
         }
         return "redirect:/listar";
     }
+
+
 }
