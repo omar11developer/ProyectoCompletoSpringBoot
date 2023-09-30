@@ -90,7 +90,7 @@ public class ClienteController {
     }
 
     @RequestMapping(value = "/form/{id}")
-    public String editar(@PathVariable(value = "") Long id, Map<String, Object> model, RedirectAttributes flash) {
+    public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 
         Cliente cliente = null;
 

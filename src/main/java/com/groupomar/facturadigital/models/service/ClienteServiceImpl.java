@@ -1,7 +1,11 @@
 package com.groupomar.facturadigital.models.service;
 
 import com.groupomar.facturadigital.models.dao.IClienteDao;
+import com.groupomar.facturadigital.models.dao.IFacturaDao;
+import com.groupomar.facturadigital.models.dao.IProductoDao;
 import com.groupomar.facturadigital.models.entity.Cliente;
+import com.groupomar.facturadigital.models.entity.Factura;
+import com.groupomar.facturadigital.models.entity.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +17,10 @@ import java.util.List;
 public class ClienteServiceImpl implements IClienteService{
     @Autowired
     private IClienteDao clienteDao;
+    @Autowired
+    private IFacturaDao facturaDao;
+    @Autowired
+    private IProductoDao productoDao;
     @Override
     @Transactional(readOnly = true)
     public List<Cliente> findAll() {
@@ -41,5 +49,36 @@ public class ClienteServiceImpl implements IClienteService{
     @Transactional
     public void delete(Long id) {
         clienteDao.deleteById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> findByNombre(String term) {
+        return productoDao.findByNombre(term);
+    }
+
+    @Override
+    @Transactional
+    public void saveFactura(Factura factura) {
+        facturaDao.save(factura);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Producto findProductoById(Long id) {
+        return productoDao.findById(id).orElse(null);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Factura findFacturaById(Long id) {
+
+        return facturaDao.findById(id).orElse(null);
+    }
+
+    @Override
+    @Transactional
+    public void deleteFactura(Long id) {
+        facturaDao.deleteById(id);
     }
 }
