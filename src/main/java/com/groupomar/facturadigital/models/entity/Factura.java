@@ -1,6 +1,7 @@
 package com.groupomar.facturadigital.models.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class Factura implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty
     private String descripcion;
     private String observacion;
     @Temporal(TemporalType.DATE)
@@ -82,7 +84,7 @@ public class Factura implements Serializable {
         Double total = 0.0;
         int size = items.size();
         for (int i = 0; i < size; i++){
-            total += items.get(i).calcularImport();
+            total += items.get(i).calcularImporte();
         }
         return total;
     }
